@@ -1,3 +1,7 @@
+# To be a GOSTcoin wallet
+
+Older info below. To be edited later.
+
 # Fuse Wallet
 
 The Fuse Wallet is a cross platform Ethereum wallet written in Dart and built on [Flutter](https://flutter.dev/). It's runninng on the Fuse network, but can be plugged into any EVM compatible blockchain.
