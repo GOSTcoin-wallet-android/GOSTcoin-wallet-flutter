@@ -1,5 +1,12 @@
 # To be a GOSTcoin wallet
 
+Current status (work in progress):
+
+(See the screenshot below)
+
+![image](https://user-images.githubusercontent.com/19966907/115990478-076c2d80-a5f6-11eb-9d45-bac9629eff76.png)
+
+
 Older info below. To be edited later.
 
 # Fuse Wallet
