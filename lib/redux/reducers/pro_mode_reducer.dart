@@ -1,13 +1,13 @@
 import 'dart:math';
 
-import 'package:fusecash/models/jobs/base.dart';
-import 'package:fusecash/models/pro/pro_wallet_state.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/models/transactions/transaction.dart';
-import 'package:fusecash/models/transactions/transactions.dart';
-import 'package:fusecash/redux/actions/cash_wallet_actions.dart';
-import 'package:fusecash/redux/actions/pro_mode_wallet_actions.dart';
-import 'package:fusecash/redux/actions/user_actions.dart';
+import 'package:gostcoin_wallet_flutter/models/jobs/base.dart';
+import 'package:gostcoin_wallet_flutter/models/pro/pro_wallet_state.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transaction.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transactions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/cash_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/pro_mode_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/user_actions.dart';
 import 'package:redux/redux.dart';
 
 bool Function(String, Token) clearTokensWithZero = (key, token) {

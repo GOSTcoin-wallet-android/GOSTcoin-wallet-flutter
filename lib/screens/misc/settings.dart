@@ -2,13 +2,13 @@ import 'dart:core';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/views/drawer.dart';
-import 'package:fusecash/screens/home/router/home_router.gr.dart';
-import 'package:fusecash/widgets/language_selector.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
-import 'package:fusecash/screens/routes.gr.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/views/drawer.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/router/home_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/widgets/language_selector.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget getListTile(

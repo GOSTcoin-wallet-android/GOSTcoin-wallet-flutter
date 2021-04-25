@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fusecash/models/community/community.dart';
-import 'package:fusecash/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
 
 class CommunityCardScreen extends StatefulWidget {
   CommunityCardScreen(

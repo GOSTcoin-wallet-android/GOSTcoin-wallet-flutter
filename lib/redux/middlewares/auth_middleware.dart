@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/redux/actions/cash_wallet_actions.dart';
-import 'package:fusecash/redux/actions/error_actions.dart';
-import 'package:fusecash/redux/actions/user_actions.dart';
-import 'package:fusecash/redux/state/store.dart';
-import 'package:fusecash/screens/routes.gr.dart';
-import 'package:fusecash/services.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/cash_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/error_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/user_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/state/store.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
 import 'package:redux/redux.dart';
 
 List<Middleware<AppState>> createAuthMiddleware() {
@@ -46,8 +45,8 @@ Middleware<AppState> _createVerifyPhoneNumberMiddleware() {
     if (action is VerifyRequest) {
       store.dispatch(SetIsVerifyRequest(isLoading: true));
       store.dispatch(setDeviceId(false));
-      final String accountAddress = store.state.userState.accountAddress;
-      final String identifier = store.state.userState.identifier;
+      // final String accountAddress = store.state.userState.accountAddress;
+      // final String identifier = store.state.userState.identifier;
       store.dispatch(LoginVerifySuccess());
       store.dispatch(SetIsVerifyRequest(isLoading: false));
       store.dispatch(segmentTrackCall("Wallet: verified phone number"));

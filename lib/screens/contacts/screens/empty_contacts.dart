@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/views/contacts.dart';
-import 'package:fusecash/screens/contacts/screens/send_to_account.dart';
-import 'package:fusecash/screens/contacts/widgets/enable_contacts.dart';
-import 'package:fusecash/screens/contacts/router/router_contacts.gr.dart';
-import 'package:fusecash/screens/contacts/widgets/search_panel.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/views/contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/screens/send_to_account.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/enable_contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/router/router_contacts.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/search_panel.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
 import "package:ethereum_address/ethereum_address.dart";
 
 class EmptyContacts extends StatefulWidget {
@@ -88,7 +88,10 @@ class _EmptyContactsState extends State<EmptyContacts> {
                   child: Text(I18n.of(context).learn_more),
                   onTap: () {
                     showDialog(
-                        child: ContactsConfirmationScreen(), context: context);
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ContactsConfirmationScreen();
+                        });
                   },
                 ),
                 SizedBox(

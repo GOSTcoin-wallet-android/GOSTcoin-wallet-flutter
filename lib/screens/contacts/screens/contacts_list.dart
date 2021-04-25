@@ -1,20 +1,14 @@
-import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_segment/flutter_segment.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/views/contacts.dart';
-import 'package:fusecash/screens/contacts/screens/send_to_account.dart';
-import 'package:fusecash/screens/contacts/widgets/contact_tile.dart';
-import 'package:fusecash/screens/contacts/widgets/list_header.dart';
-// import 'package:fusecash/screens/contacts/widgets/recent_contacts.dart';
-import 'package:fusecash/screens/contacts/widgets/search_panel.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/views/contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/screens/send_to_account.dart';
+// import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/recent_contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/search_panel.dart';
 import "package:ethereum_address/ethereum_address.dart";
-import 'package:fusecash/widgets/preloader.dart';
+import 'package:gostcoin_wallet_flutter/widgets/preloader.dart';
 
 class ContactsList extends StatefulWidget {
   @override

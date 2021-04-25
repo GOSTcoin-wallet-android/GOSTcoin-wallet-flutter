@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 
 abstract class ERC20Token extends Equatable {
   final String address;

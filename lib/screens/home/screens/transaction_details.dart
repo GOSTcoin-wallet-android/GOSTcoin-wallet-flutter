@@ -1,14 +1,14 @@
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fusecash/screens/home/widgets/drawer.dart';
-import 'package:fusecash/utils/addresses.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/widgets/drawer.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
 
 class TransactionDetailsScreen extends StatelessWidget {
   final String status;

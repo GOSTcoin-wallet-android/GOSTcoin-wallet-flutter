@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
 import 'dart:core';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';

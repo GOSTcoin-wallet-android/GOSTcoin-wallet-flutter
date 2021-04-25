@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/screens/contacts/widgets/contact_tile.dart';
-import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/utils/send.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/contact_tile.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/utils/send.dart';
 
 class SendToAccount extends StatelessWidget {
   final String accountAddress;

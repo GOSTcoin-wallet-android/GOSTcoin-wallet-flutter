@@ -1,15 +1,15 @@
 import 'package:ethereum_address/ethereum_address.dart';
-import 'package:fusecash/constans/exchangable_tokens.dart';
-import 'package:fusecash/models/jobs/base.dart';
-import 'package:fusecash/models/pro/pro_wallet_state.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/redux/actions/cash_wallet_actions.dart';
-import 'package:fusecash/redux/actions/pro_mode_wallet_actions.dart';
-import 'package:fusecash/redux/state/store.dart';
-import 'package:fusecash/services.dart';
-import 'package:fusecash/utils/addresses.dart';
-import 'package:fusecash/widgets/snackbars.dart';
+import 'package:gostcoin_wallet_flutter/constans/exchangable_tokens.dart';
+import 'package:gostcoin_wallet_flutter/models/jobs/base.dart';
+import 'package:gostcoin_wallet_flutter/models/pro/pro_wallet_state.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/cash_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/pro_mode_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/state/store.dart';
+import 'package:gostcoin_wallet_flutter/services.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart';
+import 'package:gostcoin_wallet_flutter/widgets/snackbars.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'swap_token_job.g.dart';

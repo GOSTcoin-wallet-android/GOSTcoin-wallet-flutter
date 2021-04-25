@@ -1,19 +1,19 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:fusecash/screens/home/home_page.dart';
-import 'package:fusecash/screens/misc/webview_page.dart';
-import 'package:fusecash/screens/route_guards.dart';
-import 'package:fusecash/screens/misc/lock_screen.dart';
-import 'package:fusecash/screens/misc/pincode_colored.dart';
-import 'package:fusecash/screens/misc/security.dart';
-import 'package:fusecash/screens/signup/recovery.dart';
-import 'package:fusecash/screens/signup/username.dart';
-import 'package:fusecash/screens/signup/choose_language.dart';
-import 'package:fusecash/screens/signup/verify.dart';
-import 'package:fusecash/screens/splash/splash.dart';
-import 'package:fusecash/screens/send_flow/send_amount.dart';
-import 'package:fusecash/screens/send_flow/send_review.dart';
-import 'package:fusecash/screens/send_flow/send_success.dart';
-import 'package:fusecash/screens/unknown_route.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/home_page.dart';
+import 'package:gostcoin_wallet_flutter/screens/misc/webview_page.dart';
+import 'package:gostcoin_wallet_flutter/screens/route_guards.dart';
+import 'package:gostcoin_wallet_flutter/screens/misc/lock_screen.dart';
+import 'package:gostcoin_wallet_flutter/screens/misc/pincode_colored.dart';
+import 'package:gostcoin_wallet_flutter/screens/misc/security.dart';
+import 'package:gostcoin_wallet_flutter/screens/signup/recovery.dart';
+import 'package:gostcoin_wallet_flutter/screens/signup/username.dart';
+import 'package:gostcoin_wallet_flutter/screens/signup/choose_language.dart';
+import 'package:gostcoin_wallet_flutter/screens/signup/verify.dart';
+import 'package:gostcoin_wallet_flutter/screens/splash/splash.dart';
+import 'package:gostcoin_wallet_flutter/screens/send_flow/send_amount.dart';
+import 'package:gostcoin_wallet_flutter/screens/send_flow/send_review.dart';
+import 'package:gostcoin_wallet_flutter/screens/send_flow/send_success.dart';
+import 'package:gostcoin_wallet_flutter/screens/unknown_route.dart';
 
 @MaterialAutoRouter(generateNavigationHelperExtension: true, routes: [
   MaterialRoute(page: LockScreen, name: 'lockScreen', initial: true),

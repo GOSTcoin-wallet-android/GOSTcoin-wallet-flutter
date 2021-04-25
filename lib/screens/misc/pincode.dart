@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/utils/biometric_local_auth.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
-import 'package:fusecash/models/views/onboard.dart';
-import 'package:fusecash/widgets/snackbars.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/utils/biometric_local_auth.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/models/views/onboard.dart';
+import 'package:gostcoin_wallet_flutter/widgets/snackbars.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 
 class PincodeScreen extends StatefulWidget {

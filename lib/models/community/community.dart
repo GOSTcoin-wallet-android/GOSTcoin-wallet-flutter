@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:fusecash/models/community/business.dart';
-import 'package:fusecash/models/community/community_metadata.dart';
-import 'package:fusecash/models/plugins/plugins.dart';
+import 'package:gostcoin_wallet_flutter/models/community/business.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community_metadata.dart';
+import 'package:gostcoin_wallet_flutter/models/plugins/plugins.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'community.g.dart';
@@ -62,7 +62,7 @@ class Community extends Equatable {
         foreignBridgeAddress: null,
         homeBridgeAddress: null,
         isMember: false,
-        businesses: new List<Business>(),
+        businesses: <Business>[],
         plugins: new Plugins(),
         isMultiBridge: false);
   }

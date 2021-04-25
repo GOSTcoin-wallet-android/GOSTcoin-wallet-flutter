@@ -1,15 +1,15 @@
 import 'dart:core';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/views/backup.dart';
-import 'package:fusecash/screens/home/router/home_router.gr.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/views/backup.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/router/home_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/widgets/copy.dart';
-import 'package:fusecash/widgets/preloader.dart';
-import 'package:fusecash/widgets/primary_button.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/widgets/copy.dart';
+import 'package:gostcoin_wallet_flutter/widgets/preloader.dart';
+import 'package:gostcoin_wallet_flutter/widgets/primary_button.dart';
 
 class ShowMnemonic extends StatelessWidget {
   @override

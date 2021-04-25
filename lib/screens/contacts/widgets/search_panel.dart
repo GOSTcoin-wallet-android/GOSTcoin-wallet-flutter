@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/utils/send.dart';
-import 'package:fusecash/widgets/silver_app_bar.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/utils/send.dart';
+import 'package:gostcoin_wallet_flutter/widgets/silver_app_bar.dart';
 
 class SearchPanel extends StatelessWidget {
   const SearchPanel({Key key, this.searchController}) : super(key: key);

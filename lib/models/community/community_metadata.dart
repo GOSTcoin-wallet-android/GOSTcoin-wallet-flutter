@@ -1,4 +1,4 @@
-import 'package:fusecash/utils/transaction_util.dart';
+import 'package:gostcoin_wallet_flutter/utils/transaction_util.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'community_metadata.g.dart';

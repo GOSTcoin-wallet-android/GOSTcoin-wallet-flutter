@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fusecash/constans/keys.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/screens/home/router/home_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/constans/keys.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/router/home_router.gr.dart';
 import 'dart:core';
 
-import 'package:fusecash/widgets/primary_button.dart';
+import 'package:gostcoin_wallet_flutter/widgets/primary_button.dart';
 
 class BackUpDialog extends StatefulWidget {
   BackUpDialog();

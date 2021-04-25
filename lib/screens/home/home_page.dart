@@ -3,27 +3,27 @@ import 'package:country_code_picker/country_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_segment/flutter_segment.dart';
-import 'package:fusecash/constans/keys.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/redux/actions/cash_wallet_actions.dart';
-import 'package:fusecash/redux/actions/user_actions.dart';
-import 'package:fusecash/screens/buy/router/buy_router.gr.dart';
-import 'package:fusecash/screens/contacts/widgets/enable_contacts.dart';
-import 'package:fusecash/screens/home/router/home_router.gr.dart';
-import 'package:fusecash/screens/home/screens/fuse_points_explained.dart';
-import 'package:fusecash/screens/home/screens/receive.dart';
-import 'package:fusecash/screens/misc/webview_page.dart';
-import 'package:fusecash/screens/contacts/router/router_contacts.gr.dart';
-import 'package:fusecash/screens/home/widgets/drawer.dart';
-import 'package:fusecash/widgets/back_up_dialog.dart';
+import 'package:gostcoin_wallet_flutter/constans/keys.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/cash_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/user_actions.dart';
+import 'package:gostcoin_wallet_flutter/screens/buy/router/buy_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/enable_contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/router/home_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/screens/fuse_points_explained.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/screens/receive.dart';
+import 'package:gostcoin_wallet_flutter/screens/misc/webview_page.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/router/router_contacts.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/widgets/drawer.dart';
+import 'package:gostcoin_wallet_flutter/widgets/back_up_dialog.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/screens/home/widgets/bottom_bar.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/widgets/bottom_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fusecash/models/community/community.dart';
-import 'package:fusecash/utils/addresses.dart' as util;
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart' as util;
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -171,8 +171,12 @@ class _HomePageState extends State<HomePage> {
                       Future.delayed(
                           Duration.zero,
                           () => showDialog(
-                              context: context,
-                              child: ContactsConfirmationScreen()));
+                            context: context,
+                            builder: (BuildContext context) {
+                                return ContactsConfirmationScreen();
+                            },
+                          )
+                      );
                     }
 
                     if (!vm.backup && !vm.isBackupDialogShowed && index == 3) {

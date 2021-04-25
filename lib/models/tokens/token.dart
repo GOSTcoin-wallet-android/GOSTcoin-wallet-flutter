@@ -1,9 +1,9 @@
-import 'package:fusecash/models/jobs/base.dart';
-import 'package:fusecash/models/pro/price.dart';
-import 'package:fusecash/models/tokens/base.dart';
-import 'package:fusecash/models/transactions/transactions.dart';
-import 'package:fusecash/services.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/models/jobs/base.dart';
+import 'package:gostcoin_wallet_flutter/models/pro/price.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/base.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transactions.dart';
+import 'package:gostcoin_wallet_flutter/services.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'token.g.dart';
@@ -33,7 +33,7 @@ class Token extends ERC20Token {
       json == null ? Transactions.initial() : Transactions.fromJson(json);
 
   static List<Job> _jobsFromJson(Map<String, dynamic> json) => json == null
-      ? List<Job>()
+      ? <Job>[]
       : List<Job>.from(json['jobs'].map((job) => JobFactory.create(job)));
 
   static Map<String, dynamic> _jobsToJson(List<dynamic> jobs) =>

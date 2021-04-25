@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:ethereum_address/ethereum_address.dart';
 import 'package:flutter/material.dart';
-import 'package:fusecash/screens/routes.gr.dart';
-import 'package:fusecash/screens/contacts/send_amount_arguments.dart';
-import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/widgets/preloader.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/send_amount_arguments.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/widgets/preloader.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<Map> fetchWalletByWalletAddress(

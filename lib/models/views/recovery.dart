@@ -1,8 +1,8 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:fusecash/redux/actions/user_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/user_actions.dart';
 import 'package:redux/redux.dart';
-import 'package:fusecash/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
 
 class RecoveryViewModel {
   final Function(String, VoidCallback) generateWalletFromBackup;

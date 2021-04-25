@@ -4,12 +4,12 @@ import 'dart:core';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_segment/flutter_segment.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/views/recovery.dart';
-import 'package:fusecash/screens/routes.gr.dart';
-import 'package:fusecash/widgets/main_scaffold.dart';
-import 'package:fusecash/widgets/primary_button.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/views/recovery.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
+import 'package:gostcoin_wallet_flutter/widgets/main_scaffold.dart';
+import 'package:gostcoin_wallet_flutter/widgets/primary_button.dart';
 
 class RecoveryPage extends StatefulWidget {
   @override

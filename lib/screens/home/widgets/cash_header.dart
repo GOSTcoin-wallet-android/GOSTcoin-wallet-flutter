@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fusecash/constans/keys.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/views/cash_header.dart';
-import 'package:fusecash/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/constans/keys.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/views/cash_header.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/utils/send.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/utils/send.dart';
 
 class CashHeader extends StatelessWidget {
   @override

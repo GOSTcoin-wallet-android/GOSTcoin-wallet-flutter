@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fusecash/models/community/business.dart';
-import 'package:fusecash/models/community/community.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/models/community/business.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 
 String getIPFSImageUrl(String image) {
   if (image == null) {

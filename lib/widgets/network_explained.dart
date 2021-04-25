@@ -1,6 +1,6 @@
 import 'dart:core';
-import 'package:fusecash/screens/home/widgets/drawer.dart';
-import 'package:fusecash/widgets/primary_button.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/widgets/drawer.dart';
+import 'package:gostcoin_wallet_flutter/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

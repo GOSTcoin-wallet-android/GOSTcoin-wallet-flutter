@@ -1,13 +1,13 @@
-import 'package:fusecash/screens/home/widgets/token_tile.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/widgets/token_tile.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 import 'package:redux/redux.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/utils/addresses.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart';
 
 String getTokenUrl(tokenAddress) {
   return tokenAddress == zeroAddress

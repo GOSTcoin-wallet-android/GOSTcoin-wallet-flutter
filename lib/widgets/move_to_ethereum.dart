@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fusecash/constans/keys.dart';
-import 'package:fusecash/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/constans/keys.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
 import 'package:flutter/material.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fusecash/screens/contacts/send_amount_arguments.dart';
-import 'package:fusecash/screens/routes.gr.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/send_amount_arguments.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
 import 'dart:core';
 
-import 'package:fusecash/utils/constans.dart';
+import 'package:gostcoin_wallet_flutter/utils/constans.dart';
 
 class TokenActionsDialog extends StatefulWidget {
   TokenActionsDialog({this.token, this.community, this.logo});

@@ -1,18 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/screens/home/router/home_router.gr.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/screens/home/router/home_router.gr.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/community/community.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/utils/addresses.dart';
-import 'package:fusecash/utils/transaction_util.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart';
+import 'package:gostcoin_wallet_flutter/utils/transaction_util.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 
 class TransactionTile extends StatefulWidget {
   final Transfer transfer;

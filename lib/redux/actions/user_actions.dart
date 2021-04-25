@@ -5,24 +5,24 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:fusecash/models/community/community.dart';
-import 'package:fusecash/models/jobs/base.dart';
-import 'package:fusecash/models/pro/pro_wallet_state.dart';
-import 'package:fusecash/models/tokens/token.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/redux/actions/cash_wallet_actions.dart';
-import 'package:fusecash/redux/actions/error_actions.dart';
-import 'package:fusecash/redux/actions/pro_mode_wallet_actions.dart';
-import 'package:fusecash/utils/addresses.dart';
-import 'package:fusecash/utils/biometric_local_auth.dart';
-import 'package:fusecash/utils/constans.dart';
-import 'package:fusecash/utils/format.dart';
+import 'package:gostcoin_wallet_flutter/models/community/community.dart';
+import 'package:gostcoin_wallet_flutter/models/jobs/base.dart';
+import 'package:gostcoin_wallet_flutter/models/pro/pro_wallet_state.dart';
+import 'package:gostcoin_wallet_flutter/models/tokens/token.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/cash_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/error_actions.dart';
+import 'package:gostcoin_wallet_flutter/redux/actions/pro_mode_wallet_actions.dart';
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart';
+import 'package:gostcoin_wallet_flutter/utils/biometric_local_auth.dart';
+import 'package:gostcoin_wallet_flutter/utils/constans.dart';
+import 'package:gostcoin_wallet_flutter/utils/format.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:gostcoin_wallet_core/wallet_core.dart';
-import 'package:fusecash/services.dart';
-import 'package:fusecash/redux/state/store.dart';
+import 'package:gostcoin_wallet_flutter/services.dart';
+import 'package:gostcoin_wallet_flutter/redux/state/store.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 
 class CreateAccountWalletRequest {
@@ -540,8 +540,7 @@ ThunkAction updateDisplayNameCall(String displayName) {
 
 ThunkAction updateUserAvatarCall(ImageSource source) {
   return (Store store) async {
-    final picker = ImagePicker();
-    final file = await picker.getImage(source: source);
+    final file = await ImagePicker.pickImage(source: source);
     try {
       final uploadResponse = await api.uploadImage(File(file.path));
       print(uploadResponse);

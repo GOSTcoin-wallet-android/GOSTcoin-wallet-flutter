@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
-import 'package:fusecash/models/transactions/transfer.dart';
-import 'package:fusecash/models/views/contacts.dart';
-import 'package:fusecash/screens/contacts/send_amount_arguments.dart';
-import 'package:fusecash/screens/contacts/widgets/contact_tile.dart';
-import 'package:fusecash/screens/routes.gr.dart';
-import 'package:fusecash/utils/transaction_util.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/models/transactions/transfer.dart';
+import 'package:gostcoin_wallet_flutter/models/views/contacts.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/send_amount_arguments.dart';
+import 'package:gostcoin_wallet_flutter/screens/contacts/widgets/contact_tile.dart';
+import 'package:gostcoin_wallet_flutter/screens/routes.gr.dart';
+import 'package:gostcoin_wallet_flutter/utils/transaction_util.dart';
 
 class RecentContacts extends StatelessWidget {
   final int numofRecentToShow;

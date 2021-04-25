@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fusecash/constans/keys.dart';
-import 'package:fusecash/generated/i18n.dart';
-import 'package:fusecash/models/app_state.dart';
+import 'package:gostcoin_wallet_flutter/constans/keys.dart';
+import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
+import 'package:gostcoin_wallet_flutter/models/app_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:redux/redux.dart';
-import 'package:fusecash/utils/addresses.dart' as util;
+import 'package:gostcoin_wallet_flutter/utils/addresses.dart' as util;
 
 class BottomBar extends StatelessWidget {
   final int tabIndex;
