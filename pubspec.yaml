@@ -1,6 +1,7 @@
-name: fusecash
+name: gostcoin_wallet_flutter
+publish_to: none
 version: 1.1.54+255
-description: Cross platform mobile Ethereum wallet.
+description: To be a cross-platform GOSTcoin wallet. Not released yet.
 environment:
   sdk: ">=2.7.0 <3.0.0"
 dependencies:
@@ -10,14 +11,14 @@ dependencies:
   flushbar: ^1.10.4
   flutter_platform_widgets: ^0.71.0
   enum_to_string: ^1.0.14
-  local_auth: ^0.6.3+4
+  local_auth: any
   auto_size_text: ^2.1.0
   webview_flutter: ^1.0.7
   cached_network_image: ^2.5.0
   auto_route: ^0.6.9
   url_launcher: ^5.7.10
   http: ^0.12.2
-  google_maps_flutter: ^1.0.6
+  google_maps_flutter: any
   equatable: ^1.2.5
   package_info: ^0.4.3+2
   share: ^0.6.5+4
@@ -30,9 +31,9 @@ dependencies:
   redux_logging: ^0.4.0
   redux_persist: ^0.8.4
   country_code_picker: ^1.7.0 # locales/i18n use country codes from this package
-  # gostcoin-wallet-flutter-core: ^0.2.4+21
+  # gostcoin-wallet-dart-core: ^0.2.4+21
   gostcoin_wallet_core:
-    path: ../gostcoin-wallet-flutter-core
+    path: ../gostcoin-wallet-dart-core
   barcode_scan: ^3.0.1
   flutter_slidable: ^0.5.7
   permission_handler: ^5.0.1+1
@@ -48,7 +49,7 @@ dependencies:
   ethereum_address: ^1.0.1
   sentry: ^3.0.1
   device_info: ">=0.4.2+9 <2.0.0"
-  image_picker: ^0.6.7+17
+  image_picker: any
   flutter_cupertino_localizations: ^1.0.1
   flutter_branch_sdk: ^1.3.0
   flutter_udid: ^1.0.1
