@@ -136,7 +136,8 @@ class _MyAppState extends State<MyApp> {
     return StoreProvider<AppState>(
         store: widget.store,
         child: MaterialApp(
-          title: 'Fuse Cash',
+          home: Container(), // per a workaround: https://github.com/Milad-Akarie/auto_route_library/issues/378#issuecomment-796802877
+          title: 'GOSTcoin Wallet',
           builder: ExtendedNavigator.builder(
             router: router.Router(),
             initialRoute: "/",
