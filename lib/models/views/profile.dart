@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:redux/redux.dart';
 
 class ProfileViewModel extends Equatable {
-  final String phone;
   final String walletAddress;
   final String avatarUrl;
   final String displayName;
@@ -14,8 +13,7 @@ class ProfileViewModel extends Equatable {
   final void Function(ImageSource source) editAvatar;
 
   ProfileViewModel(
-      {this.phone,
-      this.walletAddress,
+      {this.walletAddress,
       this.displayName,
       this.editAvatar,
       this.avatarUrl,
@@ -24,7 +22,6 @@ class ProfileViewModel extends Equatable {
   static ProfileViewModel fromStore(Store<AppState> store) {
     return ProfileViewModel(
         displayName: store.state.userState.displayName ?? '',
-        phone: store.state.userState.normalizedPhoneNumber,
         avatarUrl: store.state.userState.avatarUrl,
         walletAddress: formatAddress(store.state.userState.walletAddress),
         editAvatar: (source) {
@@ -36,5 +33,5 @@ class ProfileViewModel extends Equatable {
   }
 
   @override
-  List get props => [walletAddress, phone, displayName];
+  List get props => [walletAddress, displayName];
 }

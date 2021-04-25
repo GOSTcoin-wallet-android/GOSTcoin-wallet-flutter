@@ -1,4 +1,3 @@
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fusecash/screens/home/widgets/drawer.dart';
@@ -15,7 +14,6 @@ class TransactionDetailsScreen extends StatelessWidget {
   final String status;
   final String displayName;
   final ImageProvider<dynamic> image;
-  final Contact contact;
   final Transfer transfer;
   final Token token;
 
@@ -24,7 +22,6 @@ class TransactionDetailsScreen extends StatelessWidget {
       this.displayName,
       this.status,
       this.token,
-      this.contact,
       this.transfer});
 
   @override

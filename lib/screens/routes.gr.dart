@@ -20,7 +20,7 @@ import 'send_flow/send_amount.dart';
 import 'send_flow/send_review.dart';
 import 'send_flow/send_success.dart';
 import 'signup/recovery.dart';
-import 'signup/signup.dart';
+import 'signup/choose_language.dart';
 import 'signup/username.dart';
 import 'signup/verify.dart';
 import 'splash/splash.dart';
@@ -68,7 +68,7 @@ class Router extends RouterBase {
     RouteDef(Routes.pincode, page: ColorsPincodeScreen),
     RouteDef(Routes.recoveryPage, page: RecoveryPage),
     RouteDef(Routes.splashScreen, page: SplashScreen),
-    RouteDef(Routes.signupScreen, page: SignupScreen),
+    RouteDef(Routes.signupScreen, page: ChooseLanguageScreen),
     RouteDef(Routes.verifyScreen, page: VerifyScreen),
     RouteDef(Routes.userNameScreen, page: UserNameScreen),
     RouteDef(Routes.webview, page: WebViewPage),
@@ -114,9 +114,9 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    SignupScreen: (data) {
+    ChooseLanguageScreen: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignupScreen(),
+        builder: (context) => ChooseLanguageScreen(),
         settings: data,
       );
     },

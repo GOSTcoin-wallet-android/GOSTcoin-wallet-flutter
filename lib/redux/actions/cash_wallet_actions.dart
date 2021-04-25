@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:ethereum_address/ethereum_address.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_segment/flutter_segment.dart';
@@ -23,12 +21,11 @@ import 'package:fusecash/redux/actions/user_actions.dart';
 import 'package:fusecash/utils/addresses.dart';
 import 'package:fusecash/redux/state/store.dart';
 import 'package:fusecash/utils/constans.dart';
-import 'package:fusecash/utils/firebase.dart';
 import 'package:fusecash/utils/format.dart';
 import 'package:http/http.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:wallet_core/wallet_core.dart' as wallet_core;
+import 'package:gostcoin_wallet_core/wallet_core.dart' as wallet_core;
 import 'package:fusecash/services.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -224,55 +221,6 @@ class SetIsJobProcessing {
 
 Future<bool> approvalCallback() async {
   return true;
-}
-
-ThunkAction enablePushNotifications() {
-  return (Store store) async {
-    final logger = await AppFactory().getLogger('action');
-    try {
-      FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
-      void iosPermission() {
-        var firebaseMessaging2 = firebaseMessaging;
-        firebaseMessaging2.requestNotificationPermissions(
-            IosNotificationSettings(sound: true, badge: true, alert: true));
-        firebaseMessaging.onIosSettingsRegistered
-            .listen((IosNotificationSettings settings) {
-          logger.info("Settings registered: $settings");
-        });
-      }
-
-      if (Platform.isIOS) iosPermission();
-      String token = await firebaseMessaging.getToken();
-      logger.info("Firebase messaging token $token");
-
-      String walletAddress = store.state.userState.walletAddress;
-      await api.updateFirebaseToken(walletAddress, token);
-      await Segment.setContext({
-        'device': {'token': token},
-      });
-
-      void switchOnPush(message) {
-        String communityAddress = communityAddressFromNotification(message);
-        if (communityAddress != null && communityAddress.isNotEmpty) {
-          store.dispatch(switchCommunityCall(communityAddress));
-        }
-      }
-
-      firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-          switchOnPush(message);
-        },
-        onResume: (Map<String, dynamic> message) async {
-          switchOnPush(message);
-        },
-        onLaunch: (Map<String, dynamic> message) async {
-          switchOnPush(message);
-        },
-      );
-    } catch (e) {
-      logger.severe('ERROR - Enable push notifications: $e');
-    }
-  };
 }
 
 ThunkAction segmentTrackCall(eventName, {Map<String, dynamic> properties}) {
@@ -499,7 +447,6 @@ ThunkAction generateWalletSuccessCall(
   return (Store store) async {
     String walletAddress = walletData["walletAddress"];
     if (walletAddress != null && walletAddress.isNotEmpty) {
-      store.dispatch(enablePushNotifications());
       store.dispatch(setupWalletCall(walletData));
       store.dispatch(segmentIdentifyCall(new Map<String, dynamic>.from({
         "Wallet Generated": true,
@@ -734,7 +681,6 @@ ThunkAction inviteAndSendSuccessCall(
     store.dispatch(sendTokenCall(token, receiverAddress, tokensAmount,
         successCallBack, sendFailureCallback,
         receiverName: receiverName, inviteTransfer: inviteTransfer));
-    store.dispatch(loadContacts());
   };
 }
 

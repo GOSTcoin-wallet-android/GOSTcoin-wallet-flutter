@@ -20,8 +20,6 @@ UserState _$UserStateFromJson(Map<String, dynamic> json) {
     pincode: json['pincode'] as String,
     accountAddress: json['accountAddress'] as String,
     countryCode: json['countryCode'] as String,
-    phoneNumber: json['phoneNumber'] as String,
-    normalizedPhoneNumber: json['normalizedPhoneNumber'] as String,
     isoCode: json['isoCode'] as String,
     reverseContacts: (json['reverseContacts'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(k, e as String),
@@ -37,7 +35,6 @@ UserState _$UserStateFromJson(Map<String, dynamic> json) {
     loginRequestSuccess: json['loginRequestSuccess'] as bool,
     loginVerifySuccess: json['loginVerifySuccess'] as bool,
     isLoggedOut: json['isLoggedOut'] as bool,
-    isContactsSynced: json['isContactsSynced'] as bool,
     backup: json['backup'] as bool,
     displayBalance: json['displayBalance'] as int,
     installedAt: json['installedAt'] == null
@@ -63,8 +60,6 @@ Map<String, dynamic> _$UserStateToJson(UserState instance) => <String, dynamic>{
       'accountAddress': instance.accountAddress,
       'countryCode': instance.countryCode,
       'isoCode': instance.isoCode,
-      'phoneNumber': instance.phoneNumber,
-      'normalizedPhoneNumber': instance.normalizedPhoneNumber,
       'syncedContacts': instance.syncedContacts,
       'reverseContacts': instance.reverseContacts,
       'jwtToken': instance.jwtToken,
@@ -76,7 +71,6 @@ Map<String, dynamic> _$UserStateToJson(UserState instance) => <String, dynamic>{
       'loginRequestSuccess': instance.loginRequestSuccess,
       'loginVerifySuccess': instance.loginVerifySuccess,
       'isLoggedOut': instance.isLoggedOut,
-      'isContactsSynced': instance.isContactsSynced,
       'backup': instance.backup,
       'displayBalance': instance.displayBalance,
       'installedAt': instance.installedAt?.toIso8601String(),

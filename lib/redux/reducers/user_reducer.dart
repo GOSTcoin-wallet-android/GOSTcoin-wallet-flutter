@@ -10,15 +10,11 @@ final userReducers = combineReducers<UserState>([
   TypedReducer<UserState, LoginRequestSuccess>(_loginSuccess),
   TypedReducer<UserState, LoginVerifySuccess>(_loginVerifySuccess),
   TypedReducer<UserState, LogoutRequestSuccess>(_logoutSuccess),
-  TypedReducer<UserState, SyncContactsProgress>(_syncContactsProgress),
-  TypedReducer<UserState, SyncContactsRejected>(_syncContactsRejected),
-  TypedReducer<UserState, SaveContacts>(_saveContacts),
   TypedReducer<UserState, SetPincodeSuccess>(_setPincode),
   TypedReducer<UserState, SetDisplayName>(_setDisplayName),
   TypedReducer<UserState, SetUserAvatar>(_setUserAvatar),
   TypedReducer<UserState, ReLogin>(_reLoginUser),
   TypedReducer<UserState, BackupSuccess>(_backupSuccess),
-  TypedReducer<UserState, SetCredentials>(_setCredentials),
   TypedReducer<UserState, SetVerificationId>(_setVerificationId),
   TypedReducer<UserState, UpdateDisplayBalance>(_updateDisplayBalance),
   TypedReducer<UserState, JustInstalled>(_justInstalled),
@@ -72,7 +68,6 @@ UserState _setSecurityType(UserState state, SetSecurityType action) {
 
 UserState _setIsoCode(UserState state, SetIsoCode action) {
   return state.copyWith(
-      normalizedPhoneNumber: action.normalizedPhoneNumber,
       isoCode: action.countryCode.code,
       countryCode: action.countryCode.dialCode);
 }
@@ -111,8 +106,6 @@ UserState _loginSuccess(UserState state, LoginRequestSuccess action) {
   return state.copyWith(
       countryCode: action.countryCode.dialCode,
       isoCode: action.countryCode.code,
-      normalizedPhoneNumber: action.normalizedPhoneNumber,
-      phoneNumber: action.phoneNumber,
       loginRequestSuccess: true);
 }
 
@@ -121,7 +114,7 @@ UserState _setVerificationId(UserState state, SetVerificationId action) {
 }
 
 UserState _loginVerifySuccess(UserState state, LoginVerifySuccess action) {
-  return state.copyWith(jwtToken: action.jwtToken, loginVerifySuccess: true);
+  return state.copyWith(loginVerifySuccess: true);
 }
 
 UserState _logoutSuccess(UserState state, LogoutRequestSuccess action) {
@@ -133,10 +126,6 @@ UserState _logoutSuccess(UserState state, LogoutRequestSuccess action) {
 //   return UserState.initial();
 // }
 
-UserState _syncContactsRejected(UserState state, SyncContactsRejected action) {
-  return state.copyWith(isContactsSynced: false);
-}
-
 UserState _setDisplayName(UserState state, SetDisplayName action) {
   return state.copyWith(displayName: action.displayName);
 }
@@ -145,29 +134,8 @@ UserState _setUserAvatar(UserState state, SetUserAvatar action) {
   return state.copyWith(avatarUrl: action.avatarUrl);
 }
 
-UserState _syncContactsProgress(UserState state, SyncContactsProgress action) {
-  Map<String, String> reverseContacts =
-      Map<String, String>.from(state.reverseContacts);
-  Iterable<MapEntry<String, String>> entries = action.newContacts.map((entry) =>
-      new MapEntry(entry['walletAddress'].toString().toLowerCase(),
-          entry['phoneNumber']));
-  reverseContacts.addEntries(entries);
-  List<String> syncedContacts = List<String>.from(state.syncedContacts);
-  syncedContacts.addAll(action.contacts);
-  return state.copyWith(
-      reverseContacts: reverseContacts, syncedContacts: syncedContacts);
-}
-
-UserState _saveContacts(UserState state, SaveContacts action) {
-  return state.copyWith(contacts: action.contacts, isContactsSynced: true);
-}
-
 UserState _setPincode(UserState state, SetPincodeSuccess action) {
   return state.copyWith(pincode: action.pincode);
-}
-
-UserState _setCredentials(UserState state, SetCredentials action) {
-  return state.copyWith(credentials: action.credentials);
 }
 
 UserState _updateDisplayBalance(UserState state, UpdateDisplayBalance action) {

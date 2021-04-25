@@ -13,7 +13,6 @@ dependencies:
   local_auth: ^0.6.3+4
   auto_size_text: ^2.1.0
   webview_flutter: ^1.0.7
-  phone_number: ^0.8.1
   cached_network_image: ^2.5.0
   auto_route: ^0.6.9
   url_launcher: ^5.7.10
@@ -30,13 +29,12 @@ dependencies:
   redux_thunk: ^0.3.0
   redux_logging: ^0.4.0
   redux_persist: ^0.8.4
-  country_code_picker: ^1.7.0
-  wallet_core: ^0.2.4+21
-  # wallet_core:
-  # path: ../wallet_core
+  country_code_picker: ^1.7.0 # locales/i18n use country codes from this package
+  # gostcoin-wallet-flutter-core: ^0.2.4+21
+  gostcoin_wallet_core:
+    path: ../gostcoin-wallet-flutter-core
   barcode_scan: ^3.0.1
   flutter_slidable: ^0.5.7
-  contacts_service: ^0.4.6
   permission_handler: ^5.0.1+1
   virtual_keyboard: ^0.1.4
   qr_flutter: ^3.2.0
@@ -47,9 +45,6 @@ dependencies:
   flare_flutter: ^2.0.6
   decimal: ^0.3.5
   flutter_segment: 2.1.1
-  firebase_messaging: ^7.0.3
-  firebase_auth: ^0.18.4+1
-  firebase_core: ^0.5.3
   ethereum_address: ^1.0.1
   sentry: ^3.0.1
   device_info: ">=0.4.2+9 <2.0.0"

@@ -15,16 +15,13 @@ import 'package:fusecash/screens/routes.gr.dart' as router;
 import 'package:fusecash/services.dart';
 import 'package:fusecash/themes/app_theme.dart';
 import 'package:fusecash/themes/custom_theme.dart';
-import 'package:fusecash/utils/jwt.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fusecash/generated/i18n.dart';
 import 'package:flutter/services.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   await DotEnv().load('environment/.env');
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Store<AppState> store = await AppFactory().getStore();
@@ -71,23 +68,12 @@ class _MyAppState extends State<MyApp> {
   void refreshToken(Store<AppState> store) async {
     final logger = await AppFactory().getLogger('action');
     String jwtToken = store?.state?.userState?.jwtToken;
-    final accoutAddress = store?.state?.userState?.accountAddress;
-    final identifier = store?.state?.userState?.identifier;
+    //final accoutAddress = store?.state?.userState?.accountAddress;
+    //final identifier = store?.state?.userState?.identifier;
     if (![null, ''].contains(jwtToken)) {
-      Map<String, dynamic> tokenData = parseJwt(jwtToken);
-      DateTime exp =
-          DateTime.fromMillisecondsSinceEpoch(tokenData['exp'] * 1000);
-      DateTime now = DateTime.now();
-      Duration diff = exp.difference(now);
-      if (diff.inDays <= 1) {
-        String token = await firebaseAuth.currentUser.getIdToken(true);
-        logger.info('forceRefreshJWT: $jwtToken');
-        jwtToken = await api.login(token, accoutAddress, identifier);
-      }
-
       logger.info('JWT: $jwtToken');
       api.setJwtToken(jwtToken);
-      store.dispatch(LoginVerifySuccess(jwtToken));
+      store.dispatch(LoginVerifySuccess());
     } else {
       logger.info('no JWT');
     }

@@ -22,8 +22,8 @@ import 'package:fusecash/utils/constans.dart';
 import 'package:fusecash/utils/format.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux/redux.dart';
-import 'package:wallet_core/wallet_core.dart' as wallet_core;
-import 'package:wallet_core/wallet_core.dart' show EtherAmount;
+import 'package:gostcoin_wallet_core/wallet_core.dart' as wallet_core;
+import 'package:gostcoin_wallet_core/wallet_core.dart' show EtherAmount;
 
 Future<bool> approvalCallback() async {
   return true;

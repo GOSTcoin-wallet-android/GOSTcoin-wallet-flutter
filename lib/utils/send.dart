@@ -4,40 +4,15 @@ import 'package:ethereum_address/ethereum_address.dart';
 import 'package:flutter/material.dart';
 import 'package:fusecash/screens/routes.gr.dart';
 import 'package:fusecash/screens/contacts/send_amount_arguments.dart';
-import 'package:fusecash/services.dart';
 import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/utils/phone.dart';
 import 'package:fusecash/widgets/preloader.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:phone_number/phone_number.dart';
 
-Future<Map> fetchWalletByPhone(
-    String phone, String countryCode, String isoCode) async {
-  try {
-    PhoneNumber phoneNumber = await phoneNumberUtil.parse(phone);
-    Map wallet = await api.getWalletByPhoneNumber(phoneNumber.e164);
-    String walletAddress = (wallet != null) ? wallet["walletAddress"] : null;
-
-    return {
-      'phoneNumber': phoneNumber.e164,
-      'walletAddress': walletAddress,
-    };
-  } catch (e) {
-    String formatted = formatPhoneNumber(phone, countryCode);
-    bool isValid = await phoneNumberUtil.validate(formatted, isoCode);
-    if (isValid) {
-      PhoneNumber phoneNumber =
-          await phoneNumberUtil.parse(formatted, regionCode: isoCode);
-      Map wallet = await api.getWalletByPhoneNumber(phoneNumber.e164);
-      String walletAddress = (wallet != null) ? wallet["walletAddress"] : null;
-      return {
-        'phoneNumber': phoneNumber.e164,
-        'walletAddress': walletAddress,
-      };
-    } else {
-      throw '[ERROR] Fetch Wallet By Phone - $e';
-    }
-  }
+Future<Map> fetchWalletByWalletAddress(
+    String walletAddress) async {
+  return {
+    'walletAddress': walletAddress,
+  };
 }
 
 void _openLoadingDialog(BuildContext context) {
@@ -48,7 +23,7 @@ void _openLoadingDialog(BuildContext context) {
   );
 }
 
-void sendToContact(BuildContext context, String displayName, String phone,
+void sendToContactByWalletAddress(BuildContext context, String displayName, String walletAddress,
     {ImageProvider avatar,
     String address,
     String countryCode,
@@ -61,7 +36,7 @@ void sendToContact(BuildContext context, String displayName, String phone,
   }
   try {
     _openLoadingDialog(context);
-    Map res = await fetchWalletByPhone(phone, countryCode, isoCode);
+    Map res = await fetchWalletByWalletAddress(walletAddress);
     Navigator.of(context).pop();
     ExtendedNavigator.root.pushSendAmountScreen(
         pageArgs: SendAmountArguments(

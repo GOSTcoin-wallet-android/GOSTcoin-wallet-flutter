@@ -7,7 +7,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/tokens/token.dart';
@@ -98,7 +97,6 @@ class HomeRouter extends RouterBase {
           displayName: args.displayName,
           status: args.status,
           token: args.token,
-          contact: args.contact,
           transfer: args.transfer,
         ),
         settings: data,
@@ -214,7 +212,6 @@ extension HomeRouterExtendedNavigatorStateX on ExtendedNavigatorState {
     String displayName,
     String status,
     Token token,
-    Contact contact,
     Transfer transfer,
   }) =>
       push<dynamic>(
@@ -224,7 +221,6 @@ extension HomeRouterExtendedNavigatorStateX on ExtendedNavigatorState {
             displayName: displayName,
             status: status,
             token: token,
-            contact: contact,
             transfer: transfer),
       );
 
@@ -304,14 +300,12 @@ class TransactionDetailsScreenArguments {
   final String displayName;
   final String status;
   final Token token;
-  final Contact contact;
   final Transfer transfer;
   TransactionDetailsScreenArguments(
       {this.image,
       this.displayName,
       this.status,
       this.token,
-      this.contact,
       this.transfer});
 }
 

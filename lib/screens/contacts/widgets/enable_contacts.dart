@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,7 +6,6 @@ import 'package:fusecash/generated/i18n.dart';
 import 'package:fusecash/models/app_state.dart';
 import 'package:fusecash/models/views/contacts.dart';
 import 'package:fusecash/screens/contacts/router/router_contacts.gr.dart';
-import 'package:fusecash/utils/contacts.dart';
 import 'package:fusecash/widgets/primary_button.dart';
 import 'dart:core';
 
@@ -142,24 +140,6 @@ class _ContactsConfirmationScreenState extends State<ContactsConfirmationScreen>
                                     setState(() {
                                       isPreloading = true;
                                     });
-                                    bool premission = await ContactController
-                                        .getPermissions();
-                                    if (premission) {
-                                      List<Contact> contacts =
-                                          await ContactController.getContacts();
-                                      viewModel.syncContacts(contacts);
-                                      viewModel.trackCall(
-                                          "Wallet: Contacts Permission Granted");
-                                      viewModel.idenyifyCall(Map.from({
-                                        "Contacts Permission Granted": true
-                                      }));
-                                    } else {
-                                      viewModel.trackCall(
-                                          "Wallet: Contacts Permission Rejected");
-                                      viewModel.idenyifyCall(Map.from({
-                                        "Contacts Permission Granted": false
-                                      }));
-                                    }
                                     Navigator.of(context).pop();
                                     ExtendedNavigator.named('contactsRouter')
                                         .replace(ContactsRoutes.contactsList);
@@ -168,21 +148,6 @@ class _ContactsConfirmationScreenState extends State<ContactsConfirmationScreen>
                                     });
                                   },
                                 )),
-                                Center(
-                                  child: FlatButton(
-                                    padding: EdgeInsets.only(top: 10),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      viewModel.syncContactsRejected();
-                                    },
-                                    child: Text(
-                                      I18n.of(context).skip_button,
-                                      style: TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 14),
-                                    ),
-                                  ),
-                                ),
                                 const SizedBox(height: 10.0),
                               ],
                             ),

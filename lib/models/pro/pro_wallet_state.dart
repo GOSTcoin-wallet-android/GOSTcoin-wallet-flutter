@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fusecash/models/tokens/token.dart';
-import 'package:wallet_core/wallet_core.dart' as wallet_core;
+import 'package:gostcoin_wallet_core/wallet_core.dart' as wallet_core;
 import 'package:json_annotation/json_annotation.dart';
 
 part 'pro_wallet_state.g.dart';

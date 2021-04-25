@@ -15,7 +15,6 @@ import 'package:fusecash/screens/home/screens/receive.dart';
 import 'package:fusecash/screens/misc/webview_page.dart';
 import 'package:fusecash/screens/contacts/router/router_contacts.gr.dart';
 import 'package:fusecash/screens/home/widgets/drawer.dart';
-import 'package:fusecash/utils/contacts.dart';
 import 'package:fusecash/widgets/back_up_dialog.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -38,16 +37,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
-  bool isContactSynced = false;
 
   @override
   void initState() {
     super.initState();
-    Contacts.checkPermissions().then((value) {
-      setState(() {
-        isContactSynced = value;
-      });
-    });
   }
 
   void _onTap(int itemIndex) {
@@ -87,7 +80,6 @@ class _HomePageState extends State<HomePage> {
       if (privateKey.isNotEmpty && jwtToken.isNotEmpty && !isLoggedOut) {
         store.dispatch(getWalletAddressessCall());
         store.dispatch(identifyCall());
-        store.dispatch(loadContacts());
       }
     }
   }
@@ -155,9 +147,7 @@ class _HomePageState extends State<HomePage> {
                     router: ContactsRouter(),
                     name: 'contactsRouter',
                     initialRoute:
-                        vm.isContactsSynced != null && vm.isContactsSynced
-                            ? ContactsRoutes.contactsList
-                            : ContactsRoutes.emptyContacts,
+                        ContactsRoutes.emptyContacts,
                   ),
                   !['', null].contains(vm.community.webUrl)
                       ? WebViewPage(
@@ -176,9 +166,8 @@ class _HomePageState extends State<HomePage> {
                 bottomNavigationBar: BottomBar(
                   onTap: (index) {
                     _onTap(index);
-                    if (vm.isContactsSynced == null &&
-                        index == 1 &&
-                        !isContactSynced) {
+                    if (
+                        index == 1 ) {
                       Future.delayed(
                           Duration.zero,
                           () => showDialog(
@@ -207,13 +196,11 @@ class _HomePageState extends State<HomePage> {
 class _HomePageViewModel extends Equatable {
   final Community community;
   final bool isDefaultCommunity;
-  final bool isContactsSynced;
   final bool backup;
   final bool isBackupDialogShowed;
   final Function setShowDialog;
 
   _HomePageViewModel({
-    this.isContactsSynced,
     this.isDefaultCommunity,
     this.community,
     this.backup,
@@ -227,7 +214,6 @@ class _HomePageViewModel extends Equatable {
         store.state.cashWalletState.communities[communityAddress] ??
             new Community.initial();
     return _HomePageViewModel(
-      isContactsSynced: store.state.userState.isContactsSynced,
       community: community,
       isDefaultCommunity: util.isDefaultCommunity(communityAddress),
       backup: store.state.userState.backup,
@@ -240,5 +226,5 @@ class _HomePageViewModel extends Equatable {
   }
 
   @override
-  List<Object> get props => [isDefaultCommunity, community, isContactsSynced];
+  List<Object> get props => [isDefaultCommunity, community];
 }

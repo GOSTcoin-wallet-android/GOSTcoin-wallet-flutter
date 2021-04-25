@@ -40,6 +40,8 @@ class I18n implements WidgetsLocalizations {
   String get intro_text_three => "Hold Ethereum assets and access \n decentralized finance with a few taps";
   /// "Hello"
   String get hi => "Hello";
+  /// "Choose Language"
+  String get choose_language => "Choose Language";
   /// "Language"
   String get language => "Language";
   /// "Logout"

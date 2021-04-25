@@ -1,7 +1,5 @@
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/material.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:fusecash/utils/biometric_local_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -22,8 +20,6 @@ class UserState {
   final String accountAddress;
   final String countryCode;
   final String isoCode;
-  final String phoneNumber;
-  final String normalizedPhoneNumber;
   final List<String> syncedContacts;
   final Map<String, String> reverseContacts;
   final String jwtToken;
@@ -35,7 +31,6 @@ class UserState {
   final bool loginRequestSuccess;
   final bool loginVerifySuccess;
   final bool isLoggedOut;
-  final bool isContactsSynced;
   final bool backup;
   final int displayBalance;
   final DateTime installedAt;
@@ -55,10 +50,6 @@ class UserState {
   final bool isLoginRequest;
   @JsonKey(ignore: true)
   final bool isVerifyRequest;
-  @JsonKey(ignore: true)
-  final List<Contact> contacts;
-  @JsonKey(ignore: true)
-  final PhoneAuthCredential credentials;
 
   UserState(
       {this.walletStatus,
@@ -73,10 +64,7 @@ class UserState {
       this.pincode,
       this.accountAddress,
       this.countryCode,
-      this.phoneNumber,
-      this.normalizedPhoneNumber,
       this.isoCode,
-      this.contacts,
       this.reverseContacts,
       this.syncedContacts,
       this.jwtToken,
@@ -88,9 +76,7 @@ class UserState {
       this.loginRequestSuccess,
       this.loginVerifySuccess,
       this.isLoggedOut,
-      this.isContactsSynced,
       this.backup,
-      this.credentials,
       this.displayBalance,
       this.installedAt,
       this.isLoginRequest,
@@ -116,9 +102,6 @@ class UserState {
         accountAddress: "",
         countryCode: "",
         isoCode: "",
-        phoneNumber: "",
-        normalizedPhoneNumber: "",
-        contacts: [],
         syncedContacts: [],
         reverseContacts: new Map<String, String>(),
         jwtToken: "",
@@ -129,10 +112,8 @@ class UserState {
         loginRequestSuccess: false,
         loginVerifySuccess: false,
         isLoggedOut: false,
-        isContactsSynced: null,
         backup: false,
         authType: BiometricAuth.none,
-        credentials: null,
         displayBalance: 0,
         installedAt: DateTime.now().toUtc(),
         isLoginRequest: false,
@@ -158,7 +139,6 @@ class UserState {
       String isoCode,
       String phoneNumber,
       String normalizedPhoneNumber,
-      List<Contact> contacts,
       List<String> syncedContacts,
       Map<String, String> reverseContacts,
       String jwtToken,
@@ -172,7 +152,6 @@ class UserState {
       bool isLoggedOut,
       bool isContactsSynced,
       bool backup,
-      PhoneAuthCredential credentials,
       int displayBalance,
       DateTime installedAt,
       bool isLoginRequest,
@@ -201,10 +180,6 @@ class UserState {
         accountAddress: accountAddress ?? this.accountAddress,
         countryCode: countryCode ?? this.countryCode,
         isoCode: isoCode ?? this.isoCode,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        normalizedPhoneNumber:
-            normalizedPhoneNumber ?? this.normalizedPhoneNumber,
-        contacts: contacts ?? this.contacts,
         syncedContacts: syncedContacts ?? this.syncedContacts,
         reverseContacts: reverseContacts ?? this.reverseContacts,
         jwtToken: jwtToken ?? this.jwtToken,
@@ -216,9 +191,7 @@ class UserState {
         loginRequestSuccess: loginRequestSuccess ?? this.loginRequestSuccess,
         loginVerifySuccess: loginVerifySuccess ?? this.loginVerifySuccess,
         isLoggedOut: isLoggedOut ?? this.isLoggedOut,
-        isContactsSynced: isContactsSynced ?? this.isContactsSynced,
         backup: backup ?? this.backup,
-        credentials: credentials ?? this.credentials,
         displayBalance: displayBalance ?? this.displayBalance,
         installedAt: installedAt ?? this.installedAt,
         isLoginRequest: isLoginRequest ?? this.isLoginRequest,

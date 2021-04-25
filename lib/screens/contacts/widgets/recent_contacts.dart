@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fusecash/generated/i18n.dart';
@@ -9,7 +8,6 @@ import 'package:fusecash/models/views/contacts.dart';
 import 'package:fusecash/screens/contacts/send_amount_arguments.dart';
 import 'package:fusecash/screens/contacts/widgets/contact_tile.dart';
 import 'package:fusecash/screens/routes.gr.dart';
-import 'package:fusecash/utils/send.dart';
 import 'package:fusecash/utils/transaction_util.dart';
 
 class RecentContacts extends StatelessWidget {
@@ -37,17 +35,9 @@ class RecentContacts extends StatelessWidget {
 
         final List<Widget> listItems = uniqueList
             .map((Transfer transfer) {
-              final Contact contact = getContact(
-                  transfer,
-                  viewModel.reverseContacts,
-                  viewModel.contacts,
-                  viewModel.countryCode);
-              final String displayName = contact != null
-                  ? contact.displayName
-                  : deducePhoneNumber(transfer, viewModel.reverseContacts,
+              final String displayName = deducePhoneNumber(transfer, viewModel.reverseContacts,
                       businesses: viewModel.businesses);
-              dynamic image = getContactImage(transfer, contact,
-                  businesses: viewModel.businesses);
+              dynamic image = getContactImage(transfer, businesses: viewModel.businesses);
               String phoneNumber =
                   viewModel.reverseContacts[transfer.to.toLowerCase()] ?? '';
               return ContactTile(
@@ -71,20 +61,11 @@ class RecentContacts extends StatelessWidget {
                               )));
                       return;
                     }
-                    if (contact == null) {
-                      ExtendedNavigator.root.pushSendAmountScreen(
-                          pageArgs: SendAmountArguments(
-                              name: displayName,
-                              accountAddress: transfer.to,
-                              avatar: image));
-                    } else {
-                      sendToContact(
-                          ExtendedNavigator.named('contactsRouter').context,
-                          displayName,
-                          '',
-                          avatar: image,
-                          address: transfer.to);
-                    }
+                    ExtendedNavigator.root.pushSendAmountScreen(
+                        pageArgs: SendAmountArguments(
+                            name: displayName,
+                            accountAddress: transfer.to,
+                            avatar: image));
                   });
             })
             .cast<Widget>()

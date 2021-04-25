@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fusecash/models/tokens/token.dart';
@@ -35,11 +34,6 @@ class _TransactionTileState extends State<TransactionTile> {
         distinct: true,
         converter: _TransactionTileViewModel.fromStore,
         builder: (_, viewModel) {
-          final Contact contact = getContact(
-              widget.transfer,
-              viewModel.reverseContacts,
-              viewModel.contacts,
-              viewModel.countryCode);
           Community community =
               viewModel.communitiesMap[widget.transfer?.tokenAddress];
           Token token = widget.token ??
@@ -52,7 +46,7 @@ class _TransactionTileState extends State<TransactionTile> {
           bool isWalletCreated = 'created' == viewModel.walletStatus;
           bool isZeroAddress = widget.transfer.from == zeroAddress;
           ImageProvider<dynamic> image = getTransferImage(
-              widget.transfer, contact, community,
+              widget.transfer, community,
               isZeroAddress: isZeroAddress);
           String displayName = widget.transfer.isJoinBonus()
               ? (widget.transfer.text ?? I18n.of(context).join_bonus)
@@ -60,9 +54,7 @@ class _TransactionTileState extends State<TransactionTile> {
                   ? widget.transfer.receiverName
                   : ![null, ''].contains(widget.transfer.text)
                       ? widget.transfer.text
-                      : contact != null
-                          ? contact.displayName
-                          : deducePhoneNumber(
+                      : deducePhoneNumber(
                               widget.transfer, viewModel.reverseContacts,
                               businesses: community?.businesses);
           String amount = formatValue(widget.transfer?.value, token?.decimals);
@@ -308,7 +300,6 @@ class _TransactionTileState extends State<TransactionTile> {
                       !widget.transfer.isJoinCommunity()) {
                     ExtendedNavigator.of(context).pushTransactionDetailsScreen(
                         transfer: widget.transfer,
-                        contact: contact,
                         displayName: displayName,
                         image: image,
                         token: token);
@@ -322,7 +313,6 @@ class _TransactionTileState extends State<TransactionTile> {
 class _TransactionTileViewModel extends Equatable {
   final Map<String, String> reverseContacts;
   final String walletStatus;
-  final List<Contact> contacts;
   final String countryCode;
   final Map<String, Token> erc20Tokens;
   final Map<String, Token> tokens;
@@ -333,7 +323,6 @@ class _TransactionTileViewModel extends Equatable {
       this.countryCode,
       this.erc20Tokens,
       this.tokens,
-      this.contacts,
       this.communitiesMap});
 
   static _TransactionTileViewModel fromStore(Store<AppState> store) {
@@ -365,7 +354,6 @@ class _TransactionTileViewModel extends Equatable {
     return _TransactionTileViewModel(
         tokens: tokens,
         reverseContacts: store.state.userState.reverseContacts,
-        contacts: store.state.userState.contacts,
         walletStatus: store.state.userState.walletStatus,
         countryCode: store.state.userState.countryCode,
         erc20Tokens: store.state.proWalletState.erc20Tokens,
@@ -377,7 +365,6 @@ class _TransactionTileViewModel extends Equatable {
         reverseContacts,
         walletStatus,
         countryCode,
-        contacts,
         erc20Tokens,
         tokens,
         communitiesMap

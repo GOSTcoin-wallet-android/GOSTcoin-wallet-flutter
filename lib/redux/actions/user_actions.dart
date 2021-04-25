@@ -16,19 +16,13 @@ import 'package:fusecash/redux/actions/pro_mode_wallet_actions.dart';
 import 'package:fusecash/utils/addresses.dart';
 import 'package:fusecash/utils/biometric_local_auth.dart';
 import 'package:fusecash/utils/constans.dart';
-import 'package:fusecash/utils/contacts.dart';
 import 'package:fusecash/utils/format.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:phone_number/phone_number.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:wallet_core/wallet_core.dart';
+import 'package:gostcoin_wallet_core/wallet_core.dart';
 import 'package:fusecash/services.dart';
 import 'package:fusecash/redux/state/store.dart';
-import 'package:contacts_service/contacts_service.dart';
-import 'package:fusecash/utils/phone.dart';
-import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 
 class CreateAccountWalletRequest {
@@ -89,39 +83,19 @@ class ReLogin {
 
 class LoginRequest {
   final CountryCode countryCode;
-  final PhoneNumber phoneNumber;
-  final PhoneCodeSent codeSent;
-  final PhoneVerificationCompleted verificationCompleted;
-  final PhoneVerificationFailed verificationFailed;
-  final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout;
 
-  LoginRequest(
-      {@required this.countryCode,
-      @required this.phoneNumber,
-      @required this.codeSent,
-      @required this.verificationCompleted,
-      @required this.verificationFailed,
-      @required this.codeAutoRetrievalTimeout});
+  LoginRequest({@required this.countryCode});
 }
 
 class LoginRequestSuccess {
   final CountryCode countryCode;
-  final String phoneNumber;
-  final String displayName;
-  final String email;
-  final String normalizedPhoneNumber;
   LoginRequestSuccess(
-      {this.countryCode,
-      this.phoneNumber,
-      this.displayName,
-      this.email,
-      this.normalizedPhoneNumber});
+      {this.countryCode});
 }
 
 class SetIsoCode {
   final CountryCode countryCode;
-  final String normalizedPhoneNumber;
-  SetIsoCode({this.countryCode, this.normalizedPhoneNumber});
+  SetIsoCode({this.countryCode});
 }
 
 class LogoutRequestSuccess {
@@ -129,23 +103,7 @@ class LogoutRequestSuccess {
 }
 
 class LoginVerifySuccess {
-  final String jwtToken;
-  LoginVerifySuccess(this.jwtToken);
-}
-
-class SyncContactsProgress {
-  List<String> contacts;
-  List<Map<String, dynamic>> newContacts;
-  SyncContactsProgress(this.contacts, this.newContacts);
-}
-
-class SyncContactsRejected {
-  SyncContactsRejected();
-}
-
-class SaveContacts {
-  List<Contact> contacts;
-  SaveContacts(this.contacts);
+  LoginVerifySuccess();
 }
 
 class SetPincodeSuccess {
@@ -169,11 +127,6 @@ class BackupRequest {
 
 class BackupSuccess {
   BackupSuccess();
-}
-
-class SetCredentials {
-  PhoneAuthCredential credentials;
-  SetCredentials(this.credentials);
 }
 
 class SetVerificationId {
@@ -210,12 +163,7 @@ class DeviceIdSuccess {
 
 ThunkAction setCountryCode(CountryCode countryCode) {
   return (Store store) async {
-    String phone =
-        '${countryCode.dialCode}${store.state.userState.phoneNumber}';
-    PhoneNumber phoneNumber =
-        await phoneNumberUtil.parse(phone, regionCode: countryCode.code);
-    store.dispatch(SetIsoCode(
-        countryCode: countryCode, normalizedPhoneNumber: phoneNumber.e164));
+    store.dispatch(SetIsoCode(countryCode: countryCode));
   };
 }
 
@@ -315,11 +263,7 @@ ThunkAction setDeviceId(bool reLogin) {
     logger.info("device identifier: $identifier");
     store.dispatch(DeviceIdSuccess(identifier));
     if (reLogin) {
-      final User currentUser = firebaseAuth.currentUser;
-      final String accountAddress = store.state.userState.accountAddress;
-      String token = await currentUser.getIdToken();
-      String jwtToken = await api.login(token, accountAddress, identifier);
-      store.dispatch(LoginVerifySuccess(jwtToken));
+      store.dispatch(LoginVerifySuccess());
     }
   };
 }
@@ -364,60 +308,14 @@ ThunkAction reLoginCall() {
   };
 }
 
-ThunkAction syncContactsCall(List<Contact> contacts) {
+ThunkAction syncContactsCall() {
   return (Store store) async {
     final logger = await AppFactory().getLogger('action');
     try {
-      store.dispatch(SaveContacts(contacts));
-      List<String> syncedContacts = store.state.userState.syncedContacts;
       List<String> newPhones = List<String>();
-      String countryCode = store.state.userState.countryCode;
-      String isoCode = store.state.userState.isoCode;
-      for (Contact contact in contacts) {
-        Future<List<String>> phones =
-            Future.wait(contact.phones.map((Item phone) async {
-          String value = clearNotNumbersAndPlusSymbol(phone.value);
-          try {
-            PhoneNumber phoneNumber = await phoneNumberUtil.parse(value);
-            return phoneNumber.e164;
-          } catch (e) {
-            String formatted = formatPhoneNumber(value, countryCode);
-            bool isValid = await phoneNumberUtil.validate(formatted, isoCode);
-            if (isValid) {
-              String phoneNum =
-                  await phoneNumberUtil.format(formatted, isoCode);
-              PhoneNumber phoneNumber = await phoneNumberUtil.parse(phoneNum);
-              return phoneNumber.e164;
-            }
-            return '';
-          }
-        }));
-        List<String> result = await phones;
-        result = result.toSet().toList()
-          ..removeWhere((element) => element == '');
-        for (String phone in result) {
-          if (!syncedContacts.contains(phone)) {
-            newPhones.add(phone);
-          }
-        }
-      }
       if (newPhones.length == 0) {
         dynamic response = await api.syncContacts(newPhones);
-        store.dispatch(SyncContactsProgress(newPhones,
-            List<Map<String, dynamic>>.from(response['newContacts'])));
         await api.ackSync(response['nonce']);
-      } else {
-        int limit = 100;
-        List<String> partial = newPhones.take(limit).toList();
-        while (partial.length > 0) {
-          dynamic response = await api.syncContacts(partial);
-          store.dispatch(SyncContactsProgress(partial,
-              List<Map<String, dynamic>>.from(response['newContacts'])));
-
-          await api.ackSync(response['nonce']);
-          newPhones = newPhones.sublist(partial.length);
-          partial = newPhones.take(limit).toList();
-        }
       }
     } catch (e) {
       logger.severe('ERROR - syncContactsCall $e');
@@ -428,7 +326,6 @@ ThunkAction syncContactsCall(List<Contact> contacts) {
 ThunkAction identifyFirstTimeCall() {
   return (Store store) async {
     String fullPhoneNumber = store.state.userState.normalizedPhoneNumber ?? '';
-    store.dispatch(enablePushNotifications());
     store.dispatch(segmentAliasCall(fullPhoneNumber));
     store.dispatch(segmentIdentifyCall(Map<String, dynamic>.from({
       "Wallet Generated": true,
@@ -481,23 +378,6 @@ ThunkAction create3boxAccountCall(walletAddress) {
       logger.info('save user $walletAddress');
     } catch (e) {
       logger.severe('user $walletAddress already saved');
-    }
-  };
-}
-
-ThunkAction loadContacts() {
-  return (Store store) async {
-    final logger = await AppFactory().getLogger('action');
-    try {
-      bool isPermitted = await Contacts.checkPermissions();
-      if (isPermitted) {
-        logger.info('Start - load contacts');
-        List<Contact> contacts = await ContactController.getContacts();
-        logger.info('Done - load contacts');
-        store.dispatch(syncContactsCall(contacts));
-      }
-    } catch (error) {
-      logger.severe('ERROR - load contacts $error');
     }
   };
 }

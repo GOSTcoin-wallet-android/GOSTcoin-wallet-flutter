@@ -1,4 +1,3 @@
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +5,6 @@ import 'package:fusecash/models/community/business.dart';
 import 'package:fusecash/models/community/community.dart';
 import 'package:fusecash/models/transactions/transfer.dart';
 import 'package:fusecash/utils/format.dart';
-import 'package:fusecash/utils/phone.dart';
 
 String getIPFSImageUrl(String image) {
   if (image == null) {
@@ -58,31 +56,6 @@ Widget deduceTransferIcon(Transfer transfer) {
   }
 }
 
-Contact getContact(Transfer transfer, Map<String, String> reverseContacts,
-    List<Contact> contacts, String countryCode) {
-  String accountAddress = transfer.type == 'SEND' ? transfer.to : transfer.from;
-  if (accountAddress == null) {
-    return null;
-  }
-  if (reverseContacts.containsKey(accountAddress.toLowerCase())) {
-    String phoneNumber = reverseContacts[accountAddress.toLowerCase()];
-    if (contacts == null) return null;
-    for (Contact contact in contacts) {
-      for (Item contactPhoneNumber in contact.phones.toList()) {
-        if (clearNotNumbersAndPlusSymbol(contactPhoneNumber.value) ==
-            phoneNumber) {
-          return contact;
-        }
-        if (formatPhoneNumber(contactPhoneNumber.value, countryCode) ==
-            phoneNumber) {
-          return contact;
-        }
-      }
-    }
-  }
-  return null;
-}
-
 String deducePhoneNumber(Transfer transfer, Map<String, String> reverseContacts,
     {bool format = true,
     List<Business> businesses,
@@ -108,7 +81,7 @@ String deducePhoneNumber(Transfer transfer, Map<String, String> reverseContacts,
 }
 
 dynamic getTransferImage(
-    Transfer transfer, Contact contact, Community community,
+    Transfer transfer, Community community,
     {bool isZeroAddress}) {
   if (isZeroAddress != null && isZeroAddress) {
     AssetImage(
@@ -126,8 +99,6 @@ dynamic getTransferImage(
     return new AssetImage(
       'assets/images/join.png',
     );
-  } else if (contact?.avatar != null && contact.avatar.isNotEmpty) {
-    return new MemoryImage(contact.avatar);
   } else if (community != null &&
       community?.homeBridgeAddress != null &&
       transfer?.to != null &&
@@ -148,11 +119,9 @@ dynamic getTransferImage(
   return new AssetImage('assets/images/anom.png');
 }
 
-dynamic getContactImage(Transfer transfer, Contact contact,
+dynamic getContactImage(Transfer transfer,
     {List<Business> businesses = const []}) {
-  if (contact?.avatar != null && contact.avatar.isNotEmpty) {
-    return new MemoryImage(contact.avatar);
-  } else if (businesses.isNotEmpty) {
+  if (businesses.isNotEmpty) {
     String accountAddress =
         transfer.type == 'SEND' ? transfer.to : transfer.from;
     Business business = businesses.firstWhere(

@@ -7,7 +7,7 @@ import 'package:fusecash/screens/misc/pincode_colored.dart';
 import 'package:fusecash/screens/misc/security.dart';
 import 'package:fusecash/screens/signup/recovery.dart';
 import 'package:fusecash/screens/signup/username.dart';
-import 'package:fusecash/screens/signup/signup.dart';
+import 'package:fusecash/screens/signup/choose_language.dart';
 import 'package:fusecash/screens/signup/verify.dart';
 import 'package:fusecash/screens/splash/splash.dart';
 import 'package:fusecash/screens/send_flow/send_amount.dart';
@@ -21,7 +21,7 @@ import 'package:fusecash/screens/unknown_route.dart';
   MaterialRoute(page: ColorsPincodeScreen, name: 'pincode'),
   MaterialRoute(page: RecoveryPage),
   MaterialRoute(page: SplashScreen),
-  MaterialRoute(page: SignupScreen),
+  MaterialRoute(page: ChooseLanguageScreen),
   MaterialRoute(page: VerifyScreen),
   MaterialRoute(page: UserNameScreen),
   MaterialRoute(page: WebViewPage, name: 'webview', fullscreenDialog: true),

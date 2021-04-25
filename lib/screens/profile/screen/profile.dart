@@ -150,9 +150,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _buildGroup(I18n.of(context).wallet_address,
                             viewModel?.walletAddress ?? ''),
                         Container(height: 1, color: Colors.grey[200]),
-                        _buildGroup(I18n.of(context).phoneNumber,
-                            viewModel?.phone ?? ''),
-                        Container(height: 1, color: Colors.grey[200]),
                       ],
                     )
                   ],

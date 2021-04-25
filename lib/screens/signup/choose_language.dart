@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -7,24 +6,18 @@ import 'package:fusecash/generated/i18n.dart';
 import 'package:fusecash/models/app_state.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:country_code_picker/country_codes.dart';
-import 'package:fusecash/services.dart';
-import 'package:fusecash/utils/constans.dart';
 import 'package:fusecash/widgets/main_scaffold.dart';
 import 'package:fusecash/widgets/primary_button.dart';
-import 'package:fusecash/widgets/signup_dialog.dart';
 import 'package:fusecash/models/views/onboard.dart';
-import 'package:fusecash/widgets/snackbars.dart';
-import 'package:phone_number/phone_number.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:fusecash/screens/routes.gr.dart';
 
-class SignupScreen extends StatefulWidget {
+class ChooseLanguageScreen extends StatefulWidget {
   @override
-  _SignupScreenState createState() => _SignupScreenState();
+  _ChooseLanguageScreenState createState() => _ChooseLanguageScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  final fullNameController = TextEditingController(text: "");
-  final emailController = TextEditingController(text: "");
-  final phoneController = TextEditingController(text: "");
+class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   final _formKey = GlobalKey<FormState>();
   CountryCode countryCode = CountryCode(dialCode: '‎+1', code: 'US');
 
@@ -49,17 +42,8 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  void onPressed(Function(CountryCode, PhoneNumber) signUp) {
-    final String phoneNumber = '${countryCode.dialCode}${phoneController.text}';
-    phoneNumberUtil.parse(phoneNumber).then((value) {
-      signUp(countryCode, value);
-    }, onError: (e) {
-      transactionFailedSnack(I18n.of(context).invalid_number,
-          title: I18n.of(context).something_went_wrong,
-          duration: Duration(seconds: 3),
-          context: context,
-          margin: EdgeInsets.only(top: 8, right: 8, left: 8, bottom: 120));
-    });
+  void onPressed(Function(CountryCode) signUp) {
+    signUp(countryCode);
   }
 
   @override
@@ -77,7 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Padding(
                   padding: EdgeInsets.only(
                       left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-                  child: Text(I18n.of(context).enter_phone_number,
+                  child: Text(I18n.of(context).choose_language,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
@@ -85,36 +69,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         fontWeight: FontWeight.normal,
                       )),
                 ),
-                Container(
-                  width: 180.0,
-                  height: 35.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFeaeaea),
-                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  SignupDialog());
-                          Segment.track(
-                              eventName:
-                                  "Wallet: opened modal - why do we need this");
-                        },
-                        child: Center(
-                          child: Text(
-                            I18n.of(context).why_do_we_need_this,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal),
-                          ),
-                        )),
-                  ),
-                )
               ],
             ),
           ),
@@ -161,32 +115,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         Icon(Icons.arrow_drop_down),
-                        Container(
-                          height: 35,
-                          width: 1,
-                          color: Color(0xFFc1c1c1),
-                          margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            controller: phoneController,
-                            keyboardType: TextInputType.number,
-                            autofocus: true,
-                            validator: (String value) => value.isEmpty
-                                ? "Please enter mobile number"
-                                : null,
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 10),
-                                hintText: I18n.of(context).phoneNumber,
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none)),
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -194,23 +122,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(height: 40.0),
                 StoreConnector<AppState, OnboardViewModel>(
                     distinct: true,
-                    onWillChange: (previousViewModel, newViewModel) {
-                      if (previousViewModel.signupException !=
-                              newViewModel.signupException &&
-                          newViewModel.signupException.runtimeType ==
-                              FirebaseAuthException) {
-                        transactionFailedSnack(
-                            newViewModel.signupException.message,
-                            title: newViewModel.signupException.code,
-                            duration: Duration(seconds: 3),
-                            context: context,
-                            margin: EdgeInsets.only(
-                                top: 8, right: 8, left: 8, bottom: 120));
-                        Future.delayed(Duration(seconds: intervalSeconds), () {
-                          newViewModel.resetErrors();
-                        });
-                      }
-                    },
                     converter: OnboardViewModel.fromStore,
                     builder: (_, viewModel) => Center(
                           child: PrimaryButton(
@@ -219,6 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             labelFontWeight: FontWeight.normal,
                             onPressed: () {
                               onPressed(viewModel.signUp);
+                              ExtendedNavigator.root.pushSecurityScreen();
                             },
                             preload: viewModel.isLoginRequest,
                           ),
