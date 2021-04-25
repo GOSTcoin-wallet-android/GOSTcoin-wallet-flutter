@@ -32,12 +32,14 @@ class I18n implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get gostCoinCoreStatusLabelText => "GOST CORE STATUS: TBD"; //TODO
+
   /// "Use the wallet to send money \n to friends without fees or friction"
   String get intro_text_one => "Use the wallet to send money \n to friends without fees or friction";
   /// "Pay and get paid using crypto \n and see where you can shop nearby"
-  String get intro_text_two => "Pay and get paid using crypto \n and see where you can shop nearby";
+  String get intro_text_two => "Pay and get paid using crypto";
   /// "Hold Ethereum assets and access \n decentralized finance with a few taps"
-  String get intro_text_three => "Hold Ethereum assets and access \n decentralized finance with a few taps";
+  String get intro_text_three => "Hold GOSTcoin assets and access \n decentralized finance with a few taps";
   /// "Hello"
   String get hi => "Hello";
   /// "Choose Language"
@@ -58,14 +60,14 @@ class I18n implements WidgetsLocalizations {
   String get balance => "Balance";
   /// "Important!"
   String get important => "Important!";
-  /// "Phone number"
+  /// "Phone number" //TODO remove
   String get phoneNumber => "Phone number";
   /// "Ok"
   String get ok => "Ok";
   /// "Contact us"
   String get contact_us => "Contact us";
-  /// "Your fuse wallet is protected!"
-  String get wallet_protected => "Your fuse wallet is protected!";
+  /// "Your wallet is protected!"
+  String get wallet_protected => "Your wallet is protected!";
   /// "Great, you’ve backed up your secret phrase. Remember to keep your secret phrase in a safe and secure place and never let anyone know what it is."
   String get wallet_protected_text => "Great, you’ve backed up your secret phrase. Remember to keep your secret phrase in a safe and secure place and never let anyone know what it is.";
   /// "write down the words in order and keep safe. You won’t be able to recover your account without it."

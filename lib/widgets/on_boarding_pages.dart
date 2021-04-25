@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:gostcoin_wallet_flutter/generated/i18n.dart';
 import 'package:gostcoin_wallet_flutter/screens/splash/create_wallet.dart';
 
-Widget introPage(BuildContext context, String title, String subTitle) {
+Widget introPage(BuildContext context, String title, String subTitle, String gostCoinCoreStatusLabelText) {
   return Container(
       color: Colors.transparent,
       padding: EdgeInsets.only(bottom: 80),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
+          Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                gostCoinCoreStatusLabelText,
+                style:
+                TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.secondary,),
+                textAlign: TextAlign.center,
+              )),
           Padding(
             padding: const EdgeInsets.only(bottom: 30.0),
             child: Text(
@@ -31,10 +39,11 @@ Widget introPage(BuildContext context, String title, String subTitle) {
 }
 
 List<Widget> getPages(BuildContext context) {
+  var gostCoinCoreStatusLabelText = I18n.of(context).gostCoinCoreStatusLabelText;
   return <Widget>[
-    introPage(context, I18n.of(context).simple, I18n.of(context).intro_text_one),
-    introPage(context, I18n.of(context).useful, I18n.of(context).intro_text_two),
-    introPage(context, I18n.of(context).smart, I18n.of(context).intro_text_three),
+    introPage(context, I18n.of(context).simple, I18n.of(context).intro_text_one, gostCoinCoreStatusLabelText),
+    introPage(context, I18n.of(context).useful, I18n.of(context).intro_text_two, gostCoinCoreStatusLabelText),
+    introPage(context, I18n.of(context).smart, I18n.of(context).intro_text_three, gostCoinCoreStatusLabelText),
     CreateWallet()
   ];
 }
